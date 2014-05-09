@@ -1,13 +1,13 @@
 === Feedback Side Tab ===
 Contributors: Grabimo
-Tags: Side Tab, Feedback Tab, Customer Reviews, Customer Satisfaction, Customer Testimonial, Customer Feedback, Customer Retention, Video Testimonial, Survey Form, Customer Support, Contact Form, Comment Box, Suggestion Box
+Tags: Feedback Tab, Customer Testimonials, Customer Feedbacks, Customer Reviews, Customer Satisfaction, Customer Retention, Video Testimonial, Survey Form, Customer Support, Contact Form, Comment Box, Suggestion Box
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A simple and customizable feedback tab, makes it easy to inspire your customers to provide feedback in video, audio, photo, and text formats.
+A customizable feedback tab on your site. Enable your customers to provide feedbacks / testimonials / comments in video, audio, photo, and text.
 
 == Description ==
 
@@ -20,14 +20,15 @@ instantly, safely, and simply. It is a both PC and mobile friendly out-of-the-bo
 offering feedback campaign setup, customer experience
 capture, digital content protection, online money payment, and social
 media sharing. With only a few clicks, business has the powerful comment box ready. 
-It dramatically increases customer engagement. Customers never
-ignore request to leave a comment or suggestion or review.
+It dramatically increases customer engagement.
 
 Collecting feedback is one of total customer satisfaction means to help retain your
 existing customers, find customer pain points to make improvements.
 The positive reviews or testimonials are the most powerful tool to generate sales
 leads. Every business should treat collecting feedback as their first
 priority.
+
+For more, please visit [http://www.grabimo.com](http://www.grabimo.com)
 
 [youtube http://www.youtube.com/watch?v=AH4k64nyR3Y]	
 		
@@ -50,9 +51,9 @@ priority.
 
 
 == Installation ==
-1. Upload the whole folder to the /wp-content/plugins/ directory.
-2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. Go **Settings->Feedback Tab** to add your business alias created at http:///www.grabimo.com 
+1. Upload the whole folder to the /wp-content/plugins/ directory, or simply search and install on your admin panel
+2. Activate the plugin using the 'Plugins' menu on your WordPress admin panel.
+3. Go **Settings->Feedback Tab** to add your business alias created at http://www.grabimo.com 
 
 == Frequently Asked Questions ==
 

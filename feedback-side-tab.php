@@ -2,14 +2,14 @@
 /*
 Plugin Name: Feedback Side Tab
 Plugin URI: http://www.grabimo.com
-Description: A simple and customizable feedback tab for your website. This plugin makes it easy to inspire your customers to provide feedback in video, audio, photo, and text formats.
-Version: 1.0.0
+Description: A customizable feedback tab on your website. Makes it easy to inspire your customers to provide feedbacks / testimonials / comments in video, audio, photo, and text formats.
+Version: 1.0.1
 Author: Grabimo
 Author URI: http://www.grabimo.com
 License: GPLv2 or later
 */
 
-/*  Copyright 2014 Grabimo  (email : admin@grabimo.com)
+/*  Copyright 2014 Grabimo  (email: admin@grabimo.com)
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ function multimedia_feedback_tab_activate_plugin() {
 		'corner_radius'    => '5'
 		);
 
-	// create field in WP_options to store all plugin data in one field
+	// create fields in WP_options to store all plugin data in one field
 	add_option( 'multimedia_feedback_tab_plugin_options', $multimedia_feedback_tab_plugin_options );
 }
 
