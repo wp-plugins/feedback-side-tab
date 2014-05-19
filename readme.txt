@@ -1,5 +1,5 @@
 === Feedback Side Tab ===
-Contributors: Grabimo
+Contributors: grabimo 
 Tags: Feedback Tab, Customer Testimonials, Customer Feedbacks, Customer Reviews, Customer Satisfaction, Customer Retention, Video Testimonial, Survey Form, Customer Support, Contact Form, Comment Box, Suggestion Box
 Requires at least: 3.0
 Tested up to: 3.8
