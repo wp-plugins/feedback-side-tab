@@ -1,17 +1,21 @@
 === Feedback Side Tab ===
-Contributors: grabimo 
-Tags: Feedback Tab, Customer Testimonials, Customer Feedbacks, Customer Reviews, Customer Satisfaction, Customer Retention, Video Testimonial, Survey Form, Customer Support, Contact Form, Comment Box, Suggestion Box
+Contributors: grabimo
+Donate link: http://www.grabimo.com
+Tags: YouTube upload, Feedback Tab, Customer Testimonials, Customer Feedbacks, Video Testimonial, Customer Support,
 Requires at least: 3.0
 Tested up to: 3.8
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A customizable feedback tab on your site. Enable your customers to provide feedbacks / testimonials / comments in video, audio, photo, and text.
+A feedback tab on your web. Enable your customers to provide feedbacks in video, audio, photo. You approve and publish video to YouTube with 1-click.
 
 == Description ==
 
 **Feedabck Side Tab** Demo: [http://demo.grabimo.com](http://demo.grabimo.com)
+
+1. **One-click YoutTube Upload**
+2. **Mobile friendly**
 
 Grabimo is a tool that facilitates business gathering customer
 feedback in multimedia formats: text, photo, audio, and video. The tool
@@ -32,7 +36,7 @@ For more, please visit [http://www.grabimo.com](http://www.grabimo.com)
 
 [youtube http://www.youtube.com/watch?v=AH4k64nyR3Y]	
 		
-= Special Features =
+= More Features =
 * **Customizable** Feedback tab with flexible location, font, color, etc. 
 * Video customer feedback/testimonial/experience/review/survey/suggestion/comment
 * Audio customer feedback/testimonial/experience/review/survey/suggestion
@@ -80,8 +84,10 @@ Or simply email us at: admin@grabimo.com
 
 1. Setting page with various options in location, font, color, etc.
 2. Feedback tab on the left side 
-3. Upload or record voice/audio/video/text on PC
-4. Work greatly on mobile
+3. Upload or record voice/audio/video/text on PC 
+4. With just one-click, a video testimonial can be uploaded to your YouTube account
+5. Work greatly on mobile
+6. One-click YouTube upload can be done on mobile, after a business owner receives video testimonial from his/her customer.
 
 == Changelog ==
 
