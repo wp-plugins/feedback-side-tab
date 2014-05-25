@@ -2,8 +2,8 @@
 /*
 Plugin Name: Feedback Side Tab
 Plugin URI: http://www.grabimo.com
-Description: A customizable feedback tab on your website. Makes it easy to inspire your customers to provide feedbacks / testimonials / comments in video, audio, photo, and text formats.
-Version: 1.0.1
+Description: A feedback tab on your web. Enable your customers to provide feedbacks in video, audio, photo. You approve and publish video to YouTube with 1-click. photo, and text formats.
+Version: 1.1.0
 Author: Grabimo
 Author URI: http://www.grabimo.com
 License: GPLv2 or later
@@ -33,23 +33,36 @@ register_activation_hook( __FILE__, 'multimedia_feedback_tab_activate_plugin' );
 
 // Add options and populate default values on first load
 function multimedia_feedback_tab_activate_plugin() {
-	// populate plugin options array
-	$multimedia_feedback_tab_plugin_options = array(
-		'business_alias'   => 'example',
-		'text_for_tab'     => 'Feedback',
-		'font_family'      => 'Tahoma, sans-serif',
-		'font_weight_bold' => '1',
-		'text_shadow'      => '0',
-		'pixels_from_top'  => '350',
-		'text_color'       => '#FFFFFF',
-		'tab_color'        => '#A0244E',
-		'hover_color'      => '#A4A4A4',
-		'left_right'	   => 'left',
-		'corner_radius'    => '5'
+	$multimedia_feedback_tab_plugin_option_array = get_option('multimedia_feedback_tab_plugin_options');
+	if ($multimedia_feedback_tab_plugin_option_array && !empty($multimedia_feedback_tab_plugin_option_array)) {
+		// already exists the option
+		if (!array_key_exists('show_title', $multimedia_feedback_tab_plugin_option_array)) {
+			// but not show_title		
+			$multimedia_feedback_tab_plugin_option_array[ 'show_title' ] = '1';
+			
+			// udpate the option
+			update_option( 'multimedia_feedback_tab_plugin_options', $multimedia_feedback_tab_plugin_option_array );
+		} 
+	} else {
+		// don't exist or empty, populate plugin options array
+		$multimedia_feedback_tab_plugin_option_array = array(
+			'business_alias'   => 'example',
+			'text_for_tab'     => 'Feedback',
+			'font_family'      => 'Tahoma, sans-serif',
+			'font_weight_bold' => '1',
+			'text_shadow'      => '0',
+			'pixels_from_top'  => '350',
+			'text_color'       => '#FFFFFF',
+			'tab_color'        => '#A0244E',
+			'hover_color'      => '#A4A4A4',
+			'left_right'	   => 'left',
+			'corner_radius'    => '5',
+			'show_title'       => '1'
 		);
-
-	// create fields in WP_options to store all plugin data in one field
-	add_option( 'multimedia_feedback_tab_plugin_options', $multimedia_feedback_tab_plugin_options );
+		
+		// fill in the empty option or not existing
+		update_option( 'multimedia_feedback_tab_plugin_options', $multimedia_feedback_tab_plugin_option_array );
+	}
 }
 
 // --- for admin hooks only -----------------------------------------
@@ -135,7 +148,8 @@ function multimedia_feedback_tab_body_tag_html() {
 	$multimedia_feedback_tab_left_right = $multimedia_feedback_tab_plugin_option_array['left_right'];
 	$multimedia_feedback_tab_business_alias = $multimedia_feedback_tab_plugin_option_array['business_alias'];	
 	$multimedia_feedback_tab_font_family = $multimedia_feedback_tab_plugin_option_array[ 'font_family' ];
-	
+	$multimedia_feedback_tab_show_title	= $multimedia_feedback_tab_plugin_option_array[ 'show_title' ];	
+
 	// set side of page for tab
 	if ($multimedia_feedback_tab_left_right == 'right') {
 		$multimedia_feedback_tab_left_right_location = 'multimedia_feedback_tab_right';
@@ -148,10 +162,10 @@ function multimedia_feedback_tab_body_tag_html() {
 	$font = json_encode($font);
 	if(preg_match('/(?i)msie [7-8]/',$_SERVER['HTTP_USER_AGENT'])) {
 	    // if IE 7 or 8, 
-		echo '<a onclick=\'grab_multimedia_feedback.startFlow("' . $multimedia_feedback_tab_business_alias . '",' . $font . ')\'><div id="multimedia_feedback_tab_tab" class="multimedia_feedback_tab_contents less-ie-9 ' . $multimedia_feedback_tab_left_right_location . '">' . esc_html( $multimedia_feedback_tab_text_for_tab ) . '</div></a>';
+		echo '<a onclick=\'grab_multimedia_feedback.startFlow("' . $multimedia_feedback_tab_business_alias . '",' . $font . ',' . $multimedia_feedback_tab_show_title . ')\'><div id="multimedia_feedback_tab_tab" class="multimedia_feedback_tab_contents less-ie-9 ' . $multimedia_feedback_tab_left_right_location . '">' . esc_html( $multimedia_feedback_tab_text_for_tab ) . '</div></a>';
 	} else {
 	    // if HTML 5 supported
-	    echo '<a onclick=\'grab_multimedia_feedback.startFlow("' . $multimedia_feedback_tab_business_alias . '",' . $font . ')\' id="multimedia_feedback_tab_tab" class="multimedia_feedback_tab_contents ' . $multimedia_feedback_tab_left_right_location . '">' . esc_html( $multimedia_feedback_tab_text_for_tab ) . '</a>';
+	    echo '<a onclick=\'grab_multimedia_feedback.startFlow("' . $multimedia_feedback_tab_business_alias . '",' . $font .  ',' . $multimedia_feedback_tab_show_title . ')\' id="multimedia_feedback_tab_tab" class="multimedia_feedback_tab_contents ' . $multimedia_feedback_tab_left_right_location . '">' . esc_html( $multimedia_feedback_tab_text_for_tab ) . '</a>';
 	}
 }
 
@@ -181,6 +195,8 @@ function multimedia_feedback_tab_options_page() {
 	$multimedia_feedback_tab_hover_color			= $multimedia_feedback_tab_plugin_option_array[ 'hover_color' ];
 	$multimedia_feedback_tab_corner_radius			= $multimedia_feedback_tab_plugin_option_array[ 'corner_radius' ]; 
 	$multimedia_feedback_tab_left_right				= $multimedia_feedback_tab_plugin_option_array[ 'left_right' ];
+	$multimedia_feedback_tab_show_title				= $multimedia_feedback_tab_plugin_option_array[ 'show_title' ];		
+	
 ?>
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
@@ -230,6 +246,7 @@ function multimedia_feedback_tab_options_page() {
 		
 		<tr valign="top">
 		<td><label for="multimedia_feedback_tab_text_shadow">Drop shadow on hover</label></td>
+		<input name="multimedia_feedback_tab_plugin_options[text_shadow]" type="hidden" value="0" />
 		<td><input name="multimedia_feedback_tab_plugin_options[text_shadow]" type="checkbox" value="1" <?php checked( '1', $multimedia_feedback_tab_text_shadow ); ?> /></td>
 		</tr>		
 	</table>
@@ -248,8 +265,15 @@ function multimedia_feedback_tab_options_page() {
 
 		<tr valign="top">
 		<td><label for="multimedia_feedback_tab_font_weight_bold">Text bold weight</label></td>
+		<input name="multimedia_feedback_tab_plugin_options[font_weight_bold]" type="hidden" value="0" />
 		<td><input name="multimedia_feedback_tab_plugin_options[font_weight_bold]" type="checkbox" value="1" <?php checked( '1', $multimedia_feedback_tab_font_weight_bold ); ?> /></td>
-		</tr>		
+		</tr>
+		
+		<tr valign="top">
+		<td><label for="multimedia_feedback_tab_show_title">Show title</label></td>
+		<input name="multimedia_feedback_tab_plugin_options[show_title]" type="hidden" value="0" />
+		<td><input name="multimedia_feedback_tab_plugin_options[show_title]" type="checkbox" value="1" <?php checked( '1', $multimedia_feedback_tab_show_title ); ?> /></td>
+		</tr>					
 	</table>
 	<br/>
 
@@ -294,6 +318,7 @@ function multimedia_feedback_tab_custom_css_hook() {
 	$multimedia_feedback_tab_tab_color				= $multimedia_feedback_tab_plugin_option_array[ 'tab_color' ];
 	$multimedia_feedback_tab_hover_color			= $multimedia_feedback_tab_plugin_option_array[ 'hover_color' ];
 	$multimedia_feedback_tab_corner_radius			= $multimedia_feedback_tab_plugin_option_array[ 'corner_radius' ];
+	$multimedia_feedback_tab_show_title				= $multimedia_feedback_tab_plugin_option_array[ 'show_title' ];	
 ?>
 
 <script type="text/javascript">

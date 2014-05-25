@@ -14,10 +14,15 @@ LETSCAN.apps = LETSCAN.apps || {};
 			setTrigger : function(el) {
 				that._setTrigger(el);
 			},
-			startFlow : function(alias, font) {
+			startFlow : function(alias, font, showTitle) {
 				var win = that._render();
 				font = encodeURIComponent(font || '');
 				var url = "http://www.grabimo.com/app/addGig.html?alias=" + alias + "&font=" + font; 
+				if ((typeof showTitle !== 'undefined') && (showTitle == 0)) {
+					url += "&compact";
+					win.style.width = "696px";
+					win.style.height = "536px";
+				}
 				if (win.location) {
 					win.location = url;
 				} else {
