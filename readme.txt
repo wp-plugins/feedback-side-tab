@@ -8,7 +8,7 @@ Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A feedback tab on your web. Enable your customers to provide feedbacks in video, audio, photo. You approve and publish video to YouTube with 1-click.
+A feedback TAB enables your customers to provide feedback in multimedia format. You publish postive video feedback to YouTube with just 1-click.
 
 == Description ==
 
