@@ -67,7 +67,7 @@ Flash, mobile and cloud computing technologies to facilitate
 collecting multimedia customer feedback. Your customers can activate
 camcorder, webcam, or sound recorder simply by clicking buttons on the
 webpage for your feedback campaign. All actions can be completed on
-the same webpage. [See Campaign Example >](http://www.grabimo.com/addGig.html?alias=example)
+the same webpage. [See Campaign Example >](http://demo.grabimo.com)
 
 = As a business owner, how do I pay customer feedback? =
 You customers see you feedback campaign and submit their experience in
