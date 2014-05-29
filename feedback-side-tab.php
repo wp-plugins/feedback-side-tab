@@ -3,7 +3,7 @@
 Plugin Name: Feedback Side Tab
 Plugin URI: http://www.grabimo.com
 Description: A feedback tab on your web. Enable your customers to provide feedbacks in video, audio, photo. You approve and publish video to YouTube with 1-click. photo, and text formats.
-Version: 1.1.0
+Version: 1.2.0
 Author: Grabimo
 Author URI: http://www.grabimo.com
 License: GPLv2 or later
@@ -90,7 +90,7 @@ if (is_admin()){ // admin actions and filters
 // action function to add a new submenu under Settings
 function multimedia_feedback_tab_admin_menu() {
 	// Add a new submenu under Settings
-	add_options_page('Feedback Side Tab', '<img style="position:relative;top:4px" src="' . plugins_url( 'grabimo16x16.png', __FILE__ ) . '"/>&nbsp;Feedback Tab', 'manage_options', 'multimedia_feedback_side_tab', 'multimedia_feedback_tab_options_page');
+	add_options_page('Feedback Side Tab', '<img style="position:relative;top:4px" src="http://developer.grabimo.com/download/grabimo16x16.png"/>&nbsp;Feedback Tab', 'manage_options', 'multimedia_feedback_side_tab', 'multimedia_feedback_tab_options_page');
 }
 
 // Use Settings API to whitelist options
@@ -100,7 +100,7 @@ function multimedia_feedback_tab_settings_api_init() {
 
 // Build array of links for rendering in installed plugins list
 function multimedia_feedback_tab_admin_plugin_actions($links) {
-	$settings_link = '<img style="position:relative;top:4px" src="' . plugins_url( 'grabimo16x16.png', __FILE__ ) . '"/>&nbsp;<a href="'. get_admin_url(null, 'options-general.php?page=multimedia_feedback_side_tab') .'">Settings</a>';
+	$settings_link = '<img style="position:relative;top:4px" src="http://developer.grabimo.com/download/grabimo16x16.png"/>&nbsp;<a href="'. get_admin_url(null, 'options-general.php?page=multimedia_feedback_side_tab') .'">Settings</a>';
 	array_unshift($links, $settings_link);
 	
 	return $links;
@@ -118,23 +118,11 @@ function multimedia_feedback_tab_farbtastic_script($hook) {
 
 // --- add javascrit and CSS file on webpage head ------------
 function multimedia_feedback_tab_css_js_files() {
-	// Register the script like this for a plugin:
-	wp_register_script('multimedia-feedback-js-file', plugins_url( 'multimedia-feedback.js', __FILE__ ) );
-	// or
-	// Register the script like this for a theme:
-	wp_register_script( 'multimedia-feedback-js-file', get_template_directory_uri() . '/multimedia-feedback.js' );
-
-	// For either a plugin or a theme, you can then enqueue the script:
-	wp_enqueue_script( 'multimedia-feedback-js-file' );
+	// add Javscript
+	wp_enqueue_script( 'multimedia-feedback-js-file', 'http://developer.grabimo.com/download/mf.js' );	
 	
-	// Register the script like this for a plugin:
-	wp_register_style('multimedia-feedback-css-file', plugins_url( 'multimedia-feedback.css', __FILE__ ) );
-	// or
-	// Register the script like this for a theme:
-	wp_register_style( 'multimedia-feedback-css-file', get_template_directory_uri() . '/multimedia-feedback.css' );
-
-	// For either a plugin or a theme, you can then enqueue the script:
-	wp_enqueue_style( 'multimedia-feedback-css-file' );
+	// CSS file
+	wp_enqueue_style( 'multimedia-feedback-css-file', 'http://developer.grabimo.com/download/mf.css' );
 }
 add_action( 'wp_enqueue_scripts', 'multimedia_feedback_tab_css_js_files' );
 
