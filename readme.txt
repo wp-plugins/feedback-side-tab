@@ -4,7 +4,7 @@ Donate link: http://www.grabimo.com
 Tags: YouTube upload, Feedback Tab, Customer Testimonials, Customer Feedbacks, Video Testimonial, Customer Support,
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
