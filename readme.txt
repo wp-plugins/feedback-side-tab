@@ -1,6 +1,6 @@
 === Feedback Side Tab ===
 Contributors: grabimo
-Donate link: http://www.grabimo.com
+Donate link: https://www.grabimo.com
 Tags: YouTube upload, Feedback Tab, Customer Testimonials, Customer Feedbacks, Video Testimonial, Customer Support,
 Requires at least: 3.0
 Tested up to: 3.8
@@ -32,7 +32,7 @@ The positive reviews or testimonials are the most powerful tool to generate sale
 leads. Every business should treat collecting feedback as their first
 priority.
 
-For more, please visit [http://www.grabimo.com](http://www.grabimo.com)
+For more, please visit [https://www.grabimo.com](https://www.grabimo.com)
 
 [youtube http://www.youtube.com/watch?v=AH4k64nyR3Y]	
 		
@@ -57,7 +57,7 @@ For more, please visit [http://www.grabimo.com](http://www.grabimo.com)
 == Installation ==
 1. Upload the whole folder to the /wp-content/plugins/ directory, or simply search and install on your admin panel
 2. Activate the plugin using the 'Plugins' menu on your WordPress admin panel.
-3. Go **Settings->Feedback Tab** to add your business alias created at http://www.grabimo.com 
+3. Go **Settings->Feedback Tab** to add your business alias created at https://www.grabimo.com 
 
 == Frequently Asked Questions ==
 
@@ -73,7 +73,7 @@ the same webpage. [See Campaign Example >](http://demo.grabimo.com)
 You customers see you feedback campaign and submit their experience in
 multimedia format. Grabmio will email you about the submission. With
 the PayPal&trade; payments, you can pay with your credit cards or
-signature debit cards, [See Example >](http://www.grabimo.com/bizGig.html?gigId=178125178667003)
+signature debit cards, [See Example >](https://www.grabimo.com/bizGig.html?gigId=178125178667003)
 
 == Support ==
 
