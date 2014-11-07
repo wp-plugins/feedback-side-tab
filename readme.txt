@@ -4,7 +4,7 @@ Donate link: https://www.grabimo.com
 Tags: YouTube upload, Feedback Tab, Customer Testimonials, Customer Feedbacks, Video Testimonial, Customer Support,
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,10 +14,10 @@ A feedback TAB enables your customers to provide feedback in multimedia format. 
 
 **Feedabck Side Tab** Demo: [http://demo.grabimo.com](http://demo.grabimo.com)
 
-1. **One-click YoutTube Upload**
+1. **Flexible location**
 2. **Mobile friendly**
 
-Grabimo is a tool that facilitates business gathering customer
+Grabimo is a tool that facilitates businesses gathering customer
 feedback in multimedia formats: text, photo, audio, and video. The tool
 makes it easy for business to appreciate customer's time and effort
 instantly, safely, and simply. It is a both PC and mobile friendly out-of-the-box solution, 
@@ -90,6 +90,9 @@ Or simply email us at: admin@grabimo.com
 6. One-click YouTube upload can be done on mobile, after a business owner receives video testimonial from his/her customer.
 
 == Changelog ==
+
+= 1.4.0 =
+* supported flexible locations
 
 = 1.0.0 =
 * Initial release

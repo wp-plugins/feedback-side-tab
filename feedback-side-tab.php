@@ -3,7 +3,7 @@
 Plugin Name: Feedback Side Tab
 Plugin URI: http://www.grabimo.com
 Description: A feedback tab on your web. Enable your customers to provide feedbacks in video, audio, photo. You approve and publish video to YouTube with 1-click. photo, and text formats.
-Version: 1.3.0
+Version: 1.4.0
 Author: Grabimo
 Author URI: http://www.grabimo.com
 License: GPLv2 or later
@@ -39,10 +39,20 @@ function multimedia_feedback_tab_activate_plugin() {
 		if (!array_key_exists('show_title', $multimedia_feedback_tab_plugin_option_array)) {
 			// but not show_title		
 			$multimedia_feedback_tab_plugin_option_array[ 'show_title' ] = '1';
-			
-			// udpate the option
-			update_option( 'multimedia_feedback_tab_plugin_options', $multimedia_feedback_tab_plugin_option_array );
 		} 
+		
+		if (!array_key_exists('tab_align', $multimedia_feedback_tab_plugin_option_array)) {
+			// but not show_title
+			$multimedia_feedback_tab_plugin_option_array[ 'tab_align' ] = 'right';
+		}
+		
+		if (!array_key_exists('tab_offset', $multimedia_feedback_tab_plugin_option_array)) {
+			// but not show_title
+			$multimedia_feedback_tab_plugin_option_array[ 'tab_offset' ] = '50';
+		}
+		
+		// udpate the option
+		update_option( 'multimedia_feedback_tab_plugin_options', $multimedia_feedback_tab_plugin_option_array );
 	} else {
 		// don't exist or empty, populate plugin options array
 		$multimedia_feedback_tab_plugin_option_array = array(
@@ -51,11 +61,11 @@ function multimedia_feedback_tab_activate_plugin() {
 			'font_family'      => 'Tahoma, sans-serif',
 			'font_weight_bold' => '1',
 			'text_shadow'      => '0',
-			'pixels_from_top'  => '350',
 			'text_color'       => '#FFFFFF',
 			'tab_color'        => '#A0244E',
 			'hover_color'      => '#A4A4A4',
-			'left_right'	   => 'left',
+			'tab_align'		   => 'right',
+			'tab_offset'       => '50',
 			'corner_radius'    => '5',
 			'show_title'       => '1'
 		);
@@ -133,27 +143,23 @@ function multimedia_feedback_tab_body_tag_html() {
 
 	// fetch individual values from the plugin option variable array
 	$multimedia_feedback_tab_text_for_tab = $multimedia_feedback_tab_plugin_option_array['text_for_tab'];
-	$multimedia_feedback_tab_left_right = $multimedia_feedback_tab_plugin_option_array['left_right'];
+	$multimedia_feedback_tab_align = $multimedia_feedback_tab_plugin_option_array['tab_align'];
 	$multimedia_feedback_tab_business_alias = $multimedia_feedback_tab_plugin_option_array['business_alias'];	
 	$multimedia_feedback_tab_font_family = $multimedia_feedback_tab_plugin_option_array[ 'font_family' ];
 	$multimedia_feedback_tab_show_title	= $multimedia_feedback_tab_plugin_option_array[ 'show_title' ];	
 
 	// set side of page for tab
-	if ($multimedia_feedback_tab_left_right == 'right') {
-		$multimedia_feedback_tab_left_right_location = 'multimedia_feedback_tab_right';
-	}else {
-		$multimedia_feedback_tab_left_right_location = 'multimedia_feedback_tab_left';
-	}
+	$multimedia_feedback_tab_align_location = 'multimedia_feedback_tab_' . $multimedia_feedback_tab_align;
 	
 	//Write HTML to render tab
 	$font = str_replace("'","\"", $multimedia_feedback_tab_font_family);
 	$font = json_encode($font);
 	if(preg_match('/(?i)msie [7-8]/',$_SERVER['HTTP_USER_AGENT'])) {
 	    // if IE 7 or 8, 
-		echo '<a onclick=\'grab_multimedia_feedback.startFlow("' . $multimedia_feedback_tab_business_alias . '",' . $font . ',' . $multimedia_feedback_tab_show_title . ')\'><div id="multimedia_feedback_tab_tab" class="multimedia_feedback_tab_contents less-ie-9 ' . $multimedia_feedback_tab_left_right_location . '">' . esc_html( $multimedia_feedback_tab_text_for_tab ) . '</div></a>';
+		echo '<a onclick=\'grab_multimedia_feedback.startFlow("' . $multimedia_feedback_tab_business_alias . '",' . $font . ',' . $multimedia_feedback_tab_show_title . ')\'><div id="multimedia_feedback_tab" class="less-ie-9 ' . $multimedia_feedback_tab_align_location . '">' . esc_html( $multimedia_feedback_tab_text_for_tab ) . '</div></a>';
 	} else {
 	    // if HTML 5 supported
-	    echo '<a onclick=\'grab_multimedia_feedback.startFlow("' . $multimedia_feedback_tab_business_alias . '",' . $font .  ',' . $multimedia_feedback_tab_show_title . ')\' id="multimedia_feedback_tab_tab" class="multimedia_feedback_tab_contents ' . $multimedia_feedback_tab_left_right_location . '">' . esc_html( $multimedia_feedback_tab_text_for_tab ) . '</a>';
+	    echo '<a onclick=\'grab_multimedia_feedback.startFlow("' . $multimedia_feedback_tab_business_alias . '",' . $font .  ',' . $multimedia_feedback_tab_show_title . ')\' id="multimedia_feedback_tab" class="' . $multimedia_feedback_tab_align_location . '">' . esc_html( $multimedia_feedback_tab_text_for_tab ) . '</a>';
 	}
 }
 
@@ -177,12 +183,12 @@ function multimedia_feedback_tab_options_page() {
 	$multimedia_feedback_tab_font_family			= $multimedia_feedback_tab_plugin_option_array[ 'font_family' ];
 	$multimedia_feedback_tab_font_weight_bold		= $multimedia_feedback_tab_plugin_option_array[ 'font_weight_bold' ];
 	$multimedia_feedback_tab_text_shadow			= $multimedia_feedback_tab_plugin_option_array[ 'text_shadow' ];
-	$multimedia_feedback_tab_pixels_from_top		= $multimedia_feedback_tab_plugin_option_array[ 'pixels_from_top' ];
 	$multimedia_feedback_tab_text_color				= $multimedia_feedback_tab_plugin_option_array[ 'text_color' ];
 	$multimedia_feedback_tab_tab_color				= $multimedia_feedback_tab_plugin_option_array[ 'tab_color' ];
 	$multimedia_feedback_tab_hover_color			= $multimedia_feedback_tab_plugin_option_array[ 'hover_color' ];
 	$multimedia_feedback_tab_corner_radius			= $multimedia_feedback_tab_plugin_option_array[ 'corner_radius' ]; 
-	$multimedia_feedback_tab_left_right				= $multimedia_feedback_tab_plugin_option_array[ 'left_right' ];
+	$multimedia_feedback_tab_align					= $multimedia_feedback_tab_plugin_option_array[ 'tab_align' ];
+	$multimedia_feedback_tab_offset					= $multimedia_feedback_tab_plugin_option_array[ 'tab_offset' ];
 	$multimedia_feedback_tab_show_title				= $multimedia_feedback_tab_plugin_option_array[ 'show_title' ];		
 	
 ?>
@@ -210,21 +216,26 @@ function multimedia_feedback_tab_options_page() {
 		<tr valign="top">
 		<td style="width:250px"><label for="multimedia_feedback_tab_business_alias">Set business alias</label></td>
 		<td><input maxlength="30" size="25" type="text" name="multimedia_feedback_tab_plugin_options[business_alias]" value="<?php echo esc_html( $multimedia_feedback_tab_business_alias ); ?>" />
-			<p class="description">To create an Alias for your website, sign up at <a href="https://www.grabimo.com">https://www.grabimo.com</a></td>
+			<p class="description">To create an Alias for your website, sign up at <a href="https://www.grabimo.com">https://www.grabimo.com</a></p></td>
 		</tr>
 		</table>
 	<br/>	
 	
 	<table class="widefat">	
 		<tr valign="top">
-		<td style="width:250px"><label for="multimedia_feedback_tab_left_right">Show tab on left or right</label></td>
-		<td><input name="multimedia_feedback_tab_plugin_options[left_right]" type="radio" value="left" <?php checked( 'left', $multimedia_feedback_tab_left_right ); ?> /> Left&nbsp; &nbsp; &nbsp; &nbsp; 
-			<input name="multimedia_feedback_tab_plugin_options[left_right]" type="radio" value="right" <?php checked( 'right', $multimedia_feedback_tab_left_right ); ?> /> Right</td>
+		<td style="width:250px"><label for="multimedia_feedback_tab_left_right">Tab Aligning</label></td>
+		<td>
+			<input name="multimedia_feedback_tab_plugin_options[tab_align]" type="radio" value="left" <?php checked( 'left', $multimedia_feedback_tab_align ); ?> /> Left&nbsp; &nbsp; 
+			<input name="multimedia_feedback_tab_plugin_options[tab_align]" type="radio" value="right" <?php checked( 'right', $multimedia_feedback_tab_align ); ?> /> Right&nbsp; &nbsp;
+			<input name="multimedia_feedback_tab_plugin_options[tab_align]" type="radio" value="top" <?php checked( 'top', $multimedia_feedback_tab_align ); ?> /> Top&nbsp; &nbsp; 
+			<input name="multimedia_feedback_tab_plugin_options[tab_align]" type="radio" value="bottom" <?php checked( 'bottom', $multimedia_feedback_tab_align ); ?> /> Bottom
+			</td>
 		</tr>
 
 		<tr valign="top">
-		<td><label for="multimedia_feedback_tab_pixels_from_top">Position from top (px)</label></td>
-		<td><input maxlength="4" size="4" type="text" name="multimedia_feedback_tab_plugin_options[pixels_from_top]" value="<?php echo sanitize_text_field( $multimedia_feedback_tab_pixels_from_top ); ?>" /></td>
+		<td><label for="multimedia_feedback_tab_pixels_from_top">Offset to bottom or right (%)</label></td>
+		<td><input maxlength="4" size="4" type="text" name="multimedia_feedback_tab_plugin_options[tab_offset]" value="<?php echo sanitize_text_field( $multimedia_feedback_tab_offset ); ?>" />
+			<p class="description">The offset in percentage measures from the right side when your tab aligns the top or bottom side of the web browser. Otherwise, it measures from the bottom side.</td>
 		</tr>		
 
 		<tr valign="top">
@@ -301,7 +312,7 @@ function multimedia_feedback_tab_custom_css_hook() {
 	$multimedia_feedback_tab_font_family			= $multimedia_feedback_tab_plugin_option_array[ 'font_family' ];
 	$multimedia_feedback_tab_font_weight_bold		= $multimedia_feedback_tab_plugin_option_array[ 'font_weight_bold' ];
 	$multimedia_feedback_tab_text_shadow			= $multimedia_feedback_tab_plugin_option_array[ 'text_shadow' ];
-	$multimedia_feedback_tab_pixels_from_top		= $multimedia_feedback_tab_plugin_option_array[ 'pixels_from_top' ];
+	$multimedia_feedback_tab_offset				= $multimedia_feedback_tab_plugin_option_array[ 'tab_offset' ];
 	$multimedia_feedback_tab_text_color				= $multimedia_feedback_tab_plugin_option_array[ 'text_color' ];
 	$multimedia_feedback_tab_tab_color				= $multimedia_feedback_tab_plugin_option_array[ 'tab_color' ];
 	$multimedia_feedback_tab_hover_color			= $multimedia_feedback_tab_plugin_option_array[ 'hover_color' ];
@@ -309,43 +320,15 @@ function multimedia_feedback_tab_custom_css_hook() {
 	$multimedia_feedback_tab_show_title				= $multimedia_feedback_tab_plugin_option_array[ 'show_title' ];	
 ?>
 
-<script type="text/javascript">
-	// reset the right offset
-	jQuery(document).ready(function() {
-		var feedbackTab = document.getElementById("multimedia_feedback_tab_tab");
-		if ((feedbackTab.className).indexOf("multimedia_feedback_tab_right") >= 0) {
-			feedbackTab.style.right = -1.0 * feedbackTab.offsetWidth + "px";
-		}
-	});
-</script>	
-
 <style type='text/css'>
-#multimedia_feedback_tab_tab {
+#multimedia_feedback_tab {
 	font-family:<?php echo $multimedia_feedback_tab_font_family; ?>;
-	top:<?php echo $multimedia_feedback_tab_pixels_from_top; ?>px;
 	background-color:<?php echo $multimedia_feedback_tab_tab_color; ?>;
 	color:<?php echo $multimedia_feedback_tab_text_color; ?>;
 	border-style:solid;
 	border-width:0px;
 	text-decoration: none;
-	-moz-border-radius-bottomright:<?php echo $multimedia_feedback_tab_corner_radius; ?>px;
-	border-bottom-right-radius:<?php echo $multimedia_feedback_tab_corner_radius; ?>px;
-	-moz-border-radius-bottomleft:<?php echo $multimedia_feedback_tab_corner_radius; ?>px;
-	border-bottom-left-radius:<?php echo $multimedia_feedback_tab_corner_radius; ?>px;
-}
-
-#multimedia_feedback_tab_tab:hover {
-	background-color: <?php echo $multimedia_feedback_tab_hover_color; ?>;
-	<?php
-	if ( $multimedia_feedback_tab_text_shadow =='1' ) {
-	  echo '	-moz-box-shadow:    -3px 3px 5px 2px #ccc;' . "\n";
-	  echo '	-webkit-box-shadow: -3px 3px 5px 2px #ccc;' . "\n";
-	  echo '	box-shadow:         -3px 3px 5px 2px #ccc;' . "\n";
-	}
-?>
-}
-
-.multimedia_feedback_tab_contents {
+	
 	position:fixed;
 	margin:0;
 	padding:6px 13px 8px 13px;
@@ -362,10 +345,23 @@ function multimedia_feedback_tab_custom_css_hook() {
 	border-style:solid;
 	display:block;
 	z-index:30000;
+	
+}
+
+#multimedia_feedback_tab:hover {
+	background-color: <?php echo $multimedia_feedback_tab_hover_color; ?>;
+	<?php
+	if ( $multimedia_feedback_tab_text_shadow =='1' ) {
+	  echo '	-moz-box-shadow:    -3px 3px 5px 2px #ccc;' . "\n";
+	  echo '	-webkit-box-shadow: -3px 3px 5px 2px #ccc;' . "\n";
+	  echo '	box-shadow:         -3px 3px 5px 2px #ccc;' . "\n";
+	}
+?>
 }
 
 .multimedia_feedback_tab_left {
-	left:-2px;
+	left:-1px;
+	bottom: <?php echo $multimedia_feedback_tab_offset; ?>%;
 	cursor: pointer;
 	-webkit-transform-origin:0 0;
 	-moz-transform-origin:0 0;
@@ -379,27 +375,54 @@ function multimedia_feedback_tab_custom_css_hook() {
 }
 
 .multimedia_feedback_tab_right {
-	right:-100px;
+	right:-1px;
+	bottom: <?php echo $multimedia_feedback_tab_offset; ?>%;
 	cursor: pointer;
-	-webkit-transform-origin:0 0;
-	-moz-transform-origin:0 0;
-	-o-transform-origin:0 0;
-	-ms-transform-origin:0 0;
-	-webkit-transform:rotate(90deg);
-	-moz-transform:rotate(90deg);
-	-ms-transform:rotate(90deg);
-	-o-transform:rotate(90deg);
-	transform:rotate(90deg);
+	-webkit-transform-origin:100% 100%;
+	-moz-transform-origin:100% 100%;
+	-o-transform-origin:100% 100%;
+	-ms-transform-origin:100% 100%;
+	-webkit-transform:rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	-o-transform:rotate(-90deg);
+	transform:rotate(-90deg);
+}
+
+.multimedia_feedback_tab_bottom {
+	bottom:-1px;
+	right: <?php echo $multimedia_feedback_tab_offset; ?>%;
+	cursor: pointer;
+}
+
+.multimedia_feedback_tab_top {
+	top:-1px;
+	right: <?php echo $multimedia_feedback_tab_offset; ?>%;
+	cursor: pointer;
 }
 
 .multimedia_feedback_tab_right.less-ie-9 {
-	right:-120px;
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 
 .multimedia_feedback_tab_left.less-ie-9 {
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
+
+.multimedia_feedback_tab_left, .multimedia_feedback_tab_top {
+	-moz-border-radius-bottomright: <?php echo $multimedia_feedback_tab_corner_radius; ?>px;
+	border-bottom-right-radius: <?php echo $multimedia_feedback_tab_corner_radius; ?>px;
+	-moz-border-radius-bottomleft: <?php echo $multimedia_feedback_tab_corner_radius; ?>px;
+	border-bottom-left-radius:<?php echo $multimedia_feedback_tab_corner_radius; ?>px;
+}
+
+.multimedia_feedback_tab_right, .multimedia_feedback_tab_bottom {
+	-moz-border-radius-topright: <?php echo $multimedia_feedback_tab_corner_radius; ?>px;
+	border-top-right-radius: <?php echo $multimedia_feedback_tab_corner_radius; ?>px;
+	-moz-border-radius-topleft: <?php echo $multimedia_feedback_tab_corner_radius; ?>px;
+	border-top-left-radius:<?php echo $multimedia_feedback_tab_corner_radius; ?>px;	
+}
+
 </style>
 
 <?php
