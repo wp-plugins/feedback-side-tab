@@ -4,7 +4,7 @@ Donate link: https://www.grabimo.com
 Tags: YouTube upload, Feedback Tab, Customer Testimonials, Customer Feedbacks, Video Testimonial, Customer Support,
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,9 @@ Or simply email us at: admin@grabimo.com
 6. One-click YouTube upload can be done on mobile, after a business owner receives video testimonial from his/her customer.
 
 == Changelog ==
+
+= 1.4.1 =
+* trim business alias
 
 = 1.4.0 =
 * supported flexible locations

@@ -3,7 +3,7 @@
 Plugin Name: Feedback Side Tab
 Plugin URI: http://www.grabimo.com
 Description: A feedback tab on your web. Enable your customers to provide feedbacks in video, audio, photo. You approve and publish video to YouTube with 1-click. photo, and text formats.
-Version: 1.4.0
+Version: 1.4.1
 Author: Grabimo
 Author URI: http://www.grabimo.com
 License: GPLv2 or later
@@ -48,7 +48,12 @@ function multimedia_feedback_tab_activate_plugin() {
 		
 		if (!array_key_exists('tab_offset', $multimedia_feedback_tab_plugin_option_array)) {
 			// but not show_title
-			$multimedia_feedback_tab_plugin_option_array[ 'tab_offset' ] = '50';
+			$multimedia_feedback_tab_plugin_option_array[ 'tab_offset' ] = '50%';
+		} else {
+			$oldVar = $multimedia_feedback_tab_plugin_option_array[ 'tab_offset' ];
+			if (is_numeric($oldVar)) {
+				$multimedia_feedback_tab_plugin_option_array[ 'tab_offset' ] = $oldVar . '%';
+			}
 		}
 		
 		// udpate the option
@@ -65,7 +70,7 @@ function multimedia_feedback_tab_activate_plugin() {
 			'tab_color'        => '#A0244E',
 			'hover_color'      => '#A4A4A4',
 			'tab_align'		   => 'right',
-			'tab_offset'       => '50',
+			'tab_offset'       => '50%',
 			'corner_radius'    => '5',
 			'show_title'       => '1'
 		);
@@ -144,9 +149,9 @@ function multimedia_feedback_tab_body_tag_html() {
 	// fetch individual values from the plugin option variable array
 	$multimedia_feedback_tab_text_for_tab = $multimedia_feedback_tab_plugin_option_array['text_for_tab'];
 	$multimedia_feedback_tab_align = $multimedia_feedback_tab_plugin_option_array['tab_align'];
-	$multimedia_feedback_tab_business_alias = $multimedia_feedback_tab_plugin_option_array['business_alias'];	
+	$multimedia_feedback_tab_business_alias = sanitize_text_field($multimedia_feedback_tab_plugin_option_array['business_alias']);	
 	$multimedia_feedback_tab_font_family = $multimedia_feedback_tab_plugin_option_array[ 'font_family' ];
-	$multimedia_feedback_tab_show_title	= $multimedia_feedback_tab_plugin_option_array[ 'show_title' ];	
+	$multimedia_feedback_tab_show_title	= $multimedia_feedback_tab_plugin_option_array[ 'show_title' ];
 
 	// set side of page for tab
 	$multimedia_feedback_tab_align_location = 'multimedia_feedback_tab_' . $multimedia_feedback_tab_align;
@@ -233,8 +238,8 @@ function multimedia_feedback_tab_options_page() {
 		</tr>
 
 		<tr valign="top">
-		<td><label for="multimedia_feedback_tab_pixels_from_top">Offset to bottom or right (%)</label></td>
-		<td><input maxlength="4" size="4" type="text" name="multimedia_feedback_tab_plugin_options[tab_offset]" value="<?php echo sanitize_text_field( $multimedia_feedback_tab_offset ); ?>" />
+		<td><label for="multimedia_feedback_tab_pixels_from_top">Offset to bottom or right</label></td>
+		<td><input maxlength="10" size="10" type="text" placeholder="0-100%" name="multimedia_feedback_tab_plugin_options[tab_offset]" value="<?php echo sanitize_text_field( $multimedia_feedback_tab_offset ); ?>" />
 			<p class="description">The offset in percentage measures from the right side when your tab aligns the top or bottom side of the web browser. Otherwise, it measures from the bottom side.</td>
 		</tr>		
 
@@ -312,7 +317,7 @@ function multimedia_feedback_tab_custom_css_hook() {
 	$multimedia_feedback_tab_font_family			= $multimedia_feedback_tab_plugin_option_array[ 'font_family' ];
 	$multimedia_feedback_tab_font_weight_bold		= $multimedia_feedback_tab_plugin_option_array[ 'font_weight_bold' ];
 	$multimedia_feedback_tab_text_shadow			= $multimedia_feedback_tab_plugin_option_array[ 'text_shadow' ];
-	$multimedia_feedback_tab_offset				= $multimedia_feedback_tab_plugin_option_array[ 'tab_offset' ];
+	$multimedia_feedback_tab_offset					= $multimedia_feedback_tab_plugin_option_array[ 'tab_offset' ];
 	$multimedia_feedback_tab_text_color				= $multimedia_feedback_tab_plugin_option_array[ 'text_color' ];
 	$multimedia_feedback_tab_tab_color				= $multimedia_feedback_tab_plugin_option_array[ 'tab_color' ];
 	$multimedia_feedback_tab_hover_color			= $multimedia_feedback_tab_plugin_option_array[ 'hover_color' ];
@@ -361,7 +366,7 @@ function multimedia_feedback_tab_custom_css_hook() {
 
 .multimedia_feedback_tab_left {
 	left:-1px;
-	bottom: <?php echo $multimedia_feedback_tab_offset; ?>%;
+	bottom: <?php echo $multimedia_feedback_tab_offset; ?>;
 	cursor: pointer;
 	-webkit-transform-origin:0 0;
 	-moz-transform-origin:0 0;
@@ -376,7 +381,7 @@ function multimedia_feedback_tab_custom_css_hook() {
 
 .multimedia_feedback_tab_right {
 	right:-1px;
-	bottom: <?php echo $multimedia_feedback_tab_offset; ?>%;
+	bottom: <?php echo $multimedia_feedback_tab_offset; ?>;
 	cursor: pointer;
 	-webkit-transform-origin:100% 100%;
 	-moz-transform-origin:100% 100%;
@@ -391,13 +396,13 @@ function multimedia_feedback_tab_custom_css_hook() {
 
 .multimedia_feedback_tab_bottom {
 	bottom:-1px;
-	right: <?php echo $multimedia_feedback_tab_offset; ?>%;
+	right: <?php echo $multimedia_feedback_tab_offset; ?>;
 	cursor: pointer;
 }
 
 .multimedia_feedback_tab_top {
 	top:-1px;
-	right: <?php echo $multimedia_feedback_tab_offset; ?>%;
+	right: <?php echo $multimedia_feedback_tab_offset; ?>;
 	cursor: pointer;
 }
 
