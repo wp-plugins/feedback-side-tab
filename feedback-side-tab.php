@@ -3,13 +3,13 @@
 Plugin Name: Feedback Side Tab
 Plugin URI: http://www.grabimo.com
 Description: A feedback tab on your web. Enable your customers to provide feedbacks in video, audio, photo. You approve and publish video to YouTube with 1-click. photo, and text formats.
-Version: 1.4.1
+Version: 1.4.2
 Author: Grabimo
 Author URI: http://www.grabimo.com
 License: GPLv2 or later
 */
 
-/*  Copyright 2014 Grabimo  (email: admin@grabimo.com)
+/*  Copyright 2015 Grabimo  (email: admin@grabimo.com)
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by

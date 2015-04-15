@@ -3,8 +3,8 @@ Contributors: grabimo
 Donate link: https://www.grabimo.com
 Tags: YouTube upload, Feedback Tab, Customer Testimonials, Customer Feedbacks, Video Testimonial, Customer Support,
 Requires at least: 3.0
-Tested up to: 3.8
-Stable tag: 1.4.1
+Tested up to: 4.1.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,8 +33,6 @@ leads. Every business should treat collecting feedback as their first
 priority.
 
 For more, please visit [https://www.grabimo.com](https://www.grabimo.com)
-
-[youtube http://www.youtube.com/watch?v=AH4k64nyR3Y]	
 		
 = More Features =
 * **Customizable** Feedback tab with flexible location, font, color, etc. 
@@ -84,12 +82,17 @@ Or simply email us at: admin@grabimo.com
 
 1. Setting page with various options in location, font, color, etc.
 2. Feedback tab on the left side 
-3. Upload or record voice/audio/video/text on PC 
-4. With just one-click, a video testimonial can be uploaded to your YouTube account
-5. Work greatly on mobile
-6. One-click YouTube upload can be done on mobile, after a business owner receives video testimonial from his/her customer.
+3. On-site feedback submission from mobile or PC
+4. Mobile multimedia upload
+5. Flash video recorder on PC web browser
+6. Flash audio recorder on PC web browser
+
 
 == Changelog ==
+
+
+= 1.4.2 =
+* tested on WP 4.1.1
 
 = 1.4.1 =
 * trim business alias
