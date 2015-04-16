@@ -1,7 +1,7 @@
 === Feedback Side Tab ===
 Contributors: grabimo
 Donate link: https://www.grabimo.com
-Tags: YouTube upload, Feedback Tab, Customer Testimonials, Customer Feedbacks, Video Testimonial, Customer Support,
+Tags: Feedback, Review, Testimonial, Comment, Customer Satisfaction, YouTube upload, Customer Testimonial, Customer Retention, Video Testimonial, Customer Support, Contact Form
 Requires at least: 3.0
 Tested up to: 4.1.1
 Stable tag: 1.4.2
